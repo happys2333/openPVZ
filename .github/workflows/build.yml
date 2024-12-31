@@ -25,8 +25,11 @@ jobs:
           name: PVZ
           preset: ${{ matrix.platform }}
           debugMode: "true"
+          package: "true"
+          
+
       - name: Upload Artifact
         uses: actions/upload-artifact@v4.5.0
         with:
           name: Client - ${{ matrix.platform }}
-          path: ${{ github.workspace }}/build
+          path: ${{ github.workspace }}/${{ steps.build.outputs.artifact }}
