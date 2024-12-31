@@ -22,7 +22,7 @@ jobs:
         id: build
         uses: felix-schindler/build-godot-action@v2.0.0
         with:
-          name: example
+          name: PVZ
           preset: ${{ matrix.platform }}
           debugMode: "true"
       - name: Upload Artifact
