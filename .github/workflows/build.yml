@@ -18,16 +18,16 @@ jobs:
       - uses: actions/checkout@v2
         with:
           lfs: true
-      - name: Build
-        id: build
-        uses: croconut/godot-multi-builder@v1
+      - name: Setup Godot
+        uses: Vitorgus/Setup-Godot@v1.1.1
         with:
-          names: ${{ matrix.platform }}
-          path-to-game: "output"
-          
-
+          godot-version: 4.2.1
+      - name: Web Build
+        run: |
+          mkdir -v -p build/web
+          godot -v --export "Web" ./build/web/index.html     
       - name: Upload Artifact
         uses: actions/upload-artifact@v4.5.0
         with:
-          name: Client - ${{ matrix.platform }}
-          path: output/builds/builds.zip
+          name: Client - web
+          path: build/web
