@@ -18,10 +18,14 @@ jobs:
       - uses: actions/checkout@v2
         with:
           lfs: true
-      - name: Setup Godot
-        uses: Vitorgus/Setup-Godot@v1.1.1
+      - uses: chickensoft-games/setup-godot@v1
+        name: 🤖 Setup Godot
         with:
-          godot-version: 4.2.1
+          # Version must include major, minor, and patch, and be >= 4.0.0
+          # Pre-release label is optional.
+          version: 4.2.1 # also valid: 4.0.0.rc1 or 4.0.0, etc
+          # Use .NET-enabled version of Godot (the default is also true).
+          use-dotnet: false
       - name: Web Build
         run: |
           mkdir -v -p build/web
