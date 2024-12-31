@@ -20,16 +20,14 @@ jobs:
           lfs: true
       - name: Build
         id: build
-        uses: felix-schindler/build-godot-action@v2.0.0
+        uses: croconut/godot-multi-builder@v1
         with:
-          name: PVZ
-          preset: ${{ matrix.platform }}
-          debugMode: "true"
-          package: "true"
+          names: ${{ matrix.platform }}
+          path-to-game: "output"
           
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4.5.0
         with:
           name: Client - ${{ matrix.platform }}
-          path: ${{ github.workspace }}/${{ steps.build.outputs.artifact }}
+          path: output/builds/builds.zip
